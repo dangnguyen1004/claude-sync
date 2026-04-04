@@ -13,7 +13,7 @@ claude-sync starts with a working export command that produces a safe, portable 
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [ ] **Phase 1: Export** - CLI scaffold, scanner, packer, manifest, and all exclusions — produces a valid portable archive
-- [ ] **Phase 2: Import** - Unpacker, restorer, conflict handling, dry-run, Zip Slip guard, and hook path rewriting — safely restores an environment
+- [ ] **Phase 2: Import** - Unpacker, restorer, conflict handling, dry-run, backup, hook path rewriting, and list subcommand — safely restores an environment
 - [ ] **Phase 3: Polish** - Progress indicators, secret detection, conversation history support, and inspect subcommand
 
 ## Phase Details
@@ -49,7 +49,12 @@ Plans:
   4. A timestamped backup of all files that would be overwritten is created in `~/.claude/backups/` before any write occurs
   5. Hook paths in settings.json are rewritten to the target machine's home directory, replacing the source machine prefix recorded in the manifest
   6. User can run `claude-sync list claude.tar.gz` and see the archive manifest contents without extracting any files
-**Plans**: TBD
+**Plans:** 2 plans
+
+Plans:
+- [ ] 02-01-PLAN.md — Manifest source_home extension, unpacker, restorer, and import command core
+- [ ] 02-02-PLAN.md — Backup-before-write system, hook path rewriting, and list subcommand
+
 **UI hint**: no
 
 ### Phase 3: Polish
@@ -71,5 +76,5 @@ Phases execute in numeric order: 1 → 2 → 3
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Export | 2/4 | In Progress|  |
-| 2. Import | 0/? | Not started | - |
+| 2. Import | 0/2 | Not started | - |
 | 3. Polish | 0/? | Not started | - |
