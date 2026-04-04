@@ -17,11 +17,11 @@ Requirements for initial release. Each maps to roadmap phases.
 - [ ] **EXP-06**: User can export `CLAUDE.md` (global instructions) into a portable archive
 - [ ] **EXP-07**: User can export `keybindings.json` into a portable archive
 - [ ] **EXP-08**: User can export conversation history (`~/.claude/projects/`) into the archive (opt-in — excluded by default due to size)
-- [ ] **EXP-09**: Archive includes a manifest (tool version, export date, Claude Code version, content inventory with checksums)
+- [x] **EXP-09**: Archive includes a manifest (tool version, export date, Claude Code version, content inventory with checksums)
 - [ ] **EXP-10**: User can selectively include or exclude data types during export via CLI flags
 - [x] **EXP-11**: `~/.claude.json` (OAuth tokens, MCP credentials) is always excluded and user is informed
 - [x] **EXP-12**: Runtime and ephemeral directories (`cache/`, `statsig/`, `debug/`, etc.) are always excluded
-- [ ] **EXP-13**: Export uses streaming to handle large conversation directories (up to 3.8 GB)
+- [x] **EXP-13**: Export uses streaming to handle large conversation directories (up to 3.8 GB)
 
 ### Import
 
@@ -42,7 +42,7 @@ Requirements for initial release. Each maps to roadmap phases.
 ### Security
 
 - [ ] **SEC-01**: Tool warns user if settings.json contains potential secrets (API keys, tokens) before exporting
-- [ ] **SEC-02**: Archive contains only relative paths — no absolute machine paths embedded in archive entries
+- [x] **SEC-02**: Archive contains only relative paths — no absolute machine paths embedded in archive entries
 - [ ] **SEC-03**: Import validates all archive entry paths to prevent path traversal attacks (Zip Slip)
 
 ## v2 Requirements
@@ -93,12 +93,12 @@ Which phases cover which requirements. Updated during roadmap creation.
 | EXP-05 | Phase 1 | Pending |
 | EXP-06 | Phase 1 | Pending |
 | EXP-07 | Phase 1 | Pending |
-| EXP-09 | Phase 1 | Pending |
+| EXP-09 | Phase 1 | Complete |
 | EXP-10 | Phase 1 | Pending |
 | EXP-11 | Phase 1 | Complete |
 | EXP-12 | Phase 1 | Complete |
-| EXP-13 | Phase 1 | Pending |
-| SEC-02 | Phase 1 | Pending |
+| EXP-13 | Phase 1 | Complete |
+| SEC-02 | Phase 1 | Complete |
 | CLI-03 | Phase 2 | Pending |
 | CLI-04 | Phase 2 | Pending |
 | IMP-01 | Phase 2 | Pending |

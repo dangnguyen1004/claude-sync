@@ -33,7 +33,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 Plans:
 - [x] 01-01-PLAN.md — Project scaffold, test fixtures, exclusions module, and shared type contracts
 - [ ] 01-02-PLAN.md — Scanner module: discover and checksum exportable files
-- [ ] 01-03-PLAN.md — Packer module: create tar.gz archive with manifest
+- [x] 01-03-PLAN.md — Packer module: create tar.gz archive with manifest
 - [ ] 01-04-PLAN.md — Export command: wire scanner + packer into CLI with integration tests
 
 **UI hint**: no
