@@ -9,16 +9,16 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Export
 
-- [ ] **EXP-01**: User can export global skills (`~/.claude/skills/`) into a portable archive
-- [ ] **EXP-02**: User can export global rules (`~/.claude/rules/`) into a portable archive
-- [ ] **EXP-03**: User can export hooks configuration (settings.json hooks section) into a portable archive
-- [ ] **EXP-04**: User can export global commands (`~/.claude/commands/`) into a portable archive
-- [ ] **EXP-05**: User can export agents (`~/.claude/agents/`) into a portable archive
-- [ ] **EXP-06**: User can export `CLAUDE.md` (global instructions) into a portable archive
-- [ ] **EXP-07**: User can export `keybindings.json` into a portable archive
+- [x] **EXP-01**: User can export global skills (`~/.claude/skills/`) into a portable archive
+- [x] **EXP-02**: User can export global rules (`~/.claude/rules/`) into a portable archive
+- [x] **EXP-03**: User can export hooks configuration (settings.json hooks section) into a portable archive
+- [x] **EXP-04**: User can export global commands (`~/.claude/commands/`) into a portable archive
+- [x] **EXP-05**: User can export agents (`~/.claude/agents/`) into a portable archive
+- [x] **EXP-06**: User can export `CLAUDE.md` (global instructions) into a portable archive
+- [x] **EXP-07**: User can export `keybindings.json` into a portable archive
 - [ ] **EXP-08**: User can export conversation history (`~/.claude/projects/`) into the archive (opt-in — excluded by default due to size)
 - [ ] **EXP-09**: Archive includes a manifest (tool version, export date, Claude Code version, content inventory with checksums)
-- [ ] **EXP-10**: User can selectively include or exclude data types during export via CLI flags
+- [x] **EXP-10**: User can selectively include or exclude data types during export via CLI flags
 - [x] **EXP-11**: `~/.claude.json` (OAuth tokens, MCP credentials) is always excluded and user is informed
 - [x] **EXP-12**: Runtime and ephemeral directories (`cache/`, `statsig/`, `debug/`, etc.) are always excluded
 - [ ] **EXP-13**: Export uses streaming to handle large conversation directories (up to 3.8 GB)
@@ -86,15 +86,15 @@ Which phases cover which requirements. Updated during roadmap creation.
 |-------------|-------|--------|
 | CLI-01 | Phase 1 | Complete |
 | CLI-02 | Phase 1 | Pending |
-| EXP-01 | Phase 1 | Pending |
-| EXP-02 | Phase 1 | Pending |
-| EXP-03 | Phase 1 | Pending |
-| EXP-04 | Phase 1 | Pending |
-| EXP-05 | Phase 1 | Pending |
-| EXP-06 | Phase 1 | Pending |
-| EXP-07 | Phase 1 | Pending |
+| EXP-01 | Phase 1 | Complete |
+| EXP-02 | Phase 1 | Complete |
+| EXP-03 | Phase 1 | Complete |
+| EXP-04 | Phase 1 | Complete |
+| EXP-05 | Phase 1 | Complete |
+| EXP-06 | Phase 1 | Complete |
+| EXP-07 | Phase 1 | Complete |
 | EXP-09 | Phase 1 | Pending |
-| EXP-10 | Phase 1 | Pending |
+| EXP-10 | Phase 1 | Complete |
 | EXP-11 | Phase 1 | Complete |
 | EXP-12 | Phase 1 | Complete |
 | EXP-13 | Phase 1 | Pending |

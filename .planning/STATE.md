@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 01-export-01-PLAN.md
-last_updated: "2026-04-04T08:04:24.578Z"
+stopped_at: Completed 01-export-02-PLAN.md
+last_updated: "2026-04-04T08:07:16.331Z"
 last_activity: 2026-04-04
 progress:
   total_phases: 3
   completed_phases: 0
   total_plans: 4
-  completed_plans: 1
+  completed_plans: 2
   percent: 0
 ---
 
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-04-04)
 ## Current Position
 
 Phase: 01 (export) — EXECUTING
-Plan: 2 of 4
+Plan: 3 of 4
 Status: Ready to execute
 Last activity: 2026-04-04
 
@@ -53,6 +53,7 @@ Progress: [░░░░░░░░░░] 0%
 
 *Updated after each plan completion*
 | Phase 01-export P01 | 3 | 2 tasks | 18 files |
+| Phase 01-export P02 | 104 | 1 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -68,6 +69,8 @@ Recent decisions affecting current work:
 - [Phase 01-export]: vitest chosen as test framework — fast, zero config, works natively with ESM
 - [Phase 01-export]: ALWAYS_EXCLUDED_NAMES is a Set<string> for O(1) lookup in scanner hot path
 - [Phase 01-export]: resolveScope() validates type names eagerly against ALL_TYPES to fail fast on bad --include/--exclude flags
+- [Phase 01-export]: DATA_TYPE_MAP maps 'hooks' to settings.json and 'conversations' to projects/ directory
+- [Phase 01-export]: hashFile() uses createReadStream streaming — avoids readFileSync per EXP-13
 
 ### Pending Todos
 
@@ -80,6 +83,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-04T08:04:24.576Z
-Stopped at: Completed 01-export-01-PLAN.md
+Last session: 2026-04-04T08:07:16.328Z
+Stopped at: Completed 01-export-02-PLAN.md
 Resume file: None
