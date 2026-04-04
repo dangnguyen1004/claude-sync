@@ -3,8 +3,8 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 01-export-02-PLAN.md
-last_updated: "2026-04-04T08:07:16.331Z"
+stopped_at: Completed 01-export-03-PLAN.md
+last_updated: "2026-04-04T08:07:26.672Z"
 last_activity: 2026-04-04
 progress:
   total_phases: 3
@@ -54,6 +54,7 @@ Progress: [░░░░░░░░░░] 0%
 *Updated after each plan completion*
 | Phase 01-export P01 | 3 | 2 tasks | 18 files |
 | Phase 01-export P02 | 104 | 1 tasks | 2 files |
+| Phase 01-export P03 | 1 | 1 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -71,6 +72,8 @@ Recent decisions affecting current work:
 - [Phase 01-export]: resolveScope() validates type names eagerly against ALL_TYPES to fail fast on bad --include/--exclude flags
 - [Phase 01-export]: DATA_TYPE_MAP maps 'hooks' to settings.json and 'conversations' to projects/ directory
 - [Phase 01-export]: hashFile() uses createReadStream streaming — avoids readFileSync per EXP-13
+- [Phase 01-export]: Staging dir approach (copy files → stageDir then tar [.]) guarantees all archive paths are relative, enforcing SEC-02 without path manipulation
+- [Phase 01-export]: Atomic write via .tmp + rename ensures no partial archive is ever visible on disk
 
 ### Pending Todos
 
@@ -83,6 +86,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-04T08:07:16.328Z
-Stopped at: Completed 01-export-02-PLAN.md
+Last session: 2026-04-04T08:07:26.669Z
+Stopped at: Completed 01-export-03-PLAN.md
 Resume file: None
