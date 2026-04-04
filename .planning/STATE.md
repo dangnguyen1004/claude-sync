@@ -1,3 +1,19 @@
+---
+gsd_state_version: 1.0
+milestone: v1.0
+milestone_name: milestone
+status: executing
+stopped_at: Completed 01-export-01-PLAN.md
+last_updated: "2026-04-04T08:04:24.578Z"
+last_activity: 2026-04-04
+progress:
+  total_phases: 3
+  completed_phases: 0
+  total_plans: 4
+  completed_plans: 1
+  percent: 0
+---
+
 # Project State
 
 ## Project Reference
@@ -5,20 +21,21 @@
 See: .planning/PROJECT.md (updated 2026-04-04)
 
 **Core value:** One-command backup and restore of a complete Claude Code environment, making it trivially easy to sync, migrate, or share Claude Code setups across machines.
-**Current focus:** Phase 1 — Export
+**Current focus:** Phase 01 — export
 
 ## Current Position
 
-Phase: 1 of 3 (Export)
-Plan: 0 of ? in current phase
-Status: Ready to plan
-Last activity: 2026-04-04 — Roadmap created; ready to begin Phase 1 planning
+Phase: 01 (export) — EXECUTING
+Plan: 2 of 4
+Status: Ready to execute
+Last activity: 2026-04-04
 
 Progress: [░░░░░░░░░░] 0%
 
 ## Performance Metrics
 
 **Velocity:**
+
 - Total plans completed: 0
 - Average duration: -
 - Total execution time: 0 hours
@@ -30,10 +47,12 @@ Progress: [░░░░░░░░░░] 0%
 | - | - | - | - |
 
 **Recent Trend:**
+
 - Last 5 plans: -
 - Trend: -
 
 *Updated after each plan completion*
+| Phase 01-export P01 | 3 | 2 tasks | 18 files |
 
 ## Accumulated Context
 
@@ -45,6 +64,10 @@ Recent decisions affecting current work:
 - Archive format: tar.gz (not ZIP) — preserves POSIX permissions for executable hook scripts
 - Module format: ESM — chalk v5, ora v9, @inquirer/prompts v8 are ESM-only
 - Conversations opt-in by default — size can reach 3.8 GB; deferred to Phase 3
+- [Phase 01-export]: ESM-only (.mjs) — chalk v5, ora v9, @inquirer/prompts v8 are ESM-only; top-level await enabled
+- [Phase 01-export]: vitest chosen as test framework — fast, zero config, works natively with ESM
+- [Phase 01-export]: ALWAYS_EXCLUDED_NAMES is a Set<string> for O(1) lookup in scanner hot path
+- [Phase 01-export]: resolveScope() validates type names eagerly against ALL_TYPES to fail fast on bad --include/--exclude flags
 
 ### Pending Todos
 
@@ -57,6 +80,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-04
-Stopped at: Roadmap created; ROADMAP.md, STATE.md, and REQUIREMENTS.md traceability written
+Last session: 2026-04-04T08:04:24.576Z
+Stopped at: Completed 01-export-01-PLAN.md
 Resume file: None

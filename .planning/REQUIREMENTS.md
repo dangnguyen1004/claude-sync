@@ -19,8 +19,8 @@ Requirements for initial release. Each maps to roadmap phases.
 - [ ] **EXP-08**: User can export conversation history (`~/.claude/projects/`) into the archive (opt-in — excluded by default due to size)
 - [ ] **EXP-09**: Archive includes a manifest (tool version, export date, Claude Code version, content inventory with checksums)
 - [ ] **EXP-10**: User can selectively include or exclude data types during export via CLI flags
-- [ ] **EXP-11**: `~/.claude.json` (OAuth tokens, MCP credentials) is always excluded and user is informed
-- [ ] **EXP-12**: Runtime and ephemeral directories (`cache/`, `statsig/`, `debug/`, etc.) are always excluded
+- [x] **EXP-11**: `~/.claude.json` (OAuth tokens, MCP credentials) is always excluded and user is informed
+- [x] **EXP-12**: Runtime and ephemeral directories (`cache/`, `statsig/`, `debug/`, etc.) are always excluded
 - [ ] **EXP-13**: Export uses streaming to handle large conversation directories (up to 3.8 GB)
 
 ### Import
@@ -33,7 +33,7 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### CLI Interface
 
-- [ ] **CLI-01**: Tool is installable as a global npm package (`npm install -g claude-sync`)
+- [x] **CLI-01**: Tool is installable as a global npm package (`npm install -g claude-sync`)
 - [ ] **CLI-02**: `claude-sync export [output.tar.gz]` exports Claude Code environment to archive
 - [ ] **CLI-03**: `claude-sync import <archive.tar.gz>` restores environment from archive
 - [ ] **CLI-04**: `claude-sync list <archive.tar.gz>` inspects archive contents without extracting
@@ -84,7 +84,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| CLI-01 | Phase 1 | Pending |
+| CLI-01 | Phase 1 | Complete |
 | CLI-02 | Phase 1 | Pending |
 | EXP-01 | Phase 1 | Pending |
 | EXP-02 | Phase 1 | Pending |
@@ -95,8 +95,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | EXP-07 | Phase 1 | Pending |
 | EXP-09 | Phase 1 | Pending |
 | EXP-10 | Phase 1 | Pending |
-| EXP-11 | Phase 1 | Pending |
-| EXP-12 | Phase 1 | Pending |
+| EXP-11 | Phase 1 | Complete |
+| EXP-12 | Phase 1 | Complete |
 | EXP-13 | Phase 1 | Pending |
 | SEC-02 | Phase 1 | Pending |
 | CLI-03 | Phase 2 | Pending |
