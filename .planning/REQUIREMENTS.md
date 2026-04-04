@@ -34,7 +34,7 @@ Requirements for initial release. Each maps to roadmap phases.
 ### CLI Interface
 
 - [x] **CLI-01**: Tool is installable as a global npm package (`npm install -g claude-sync`)
-- [ ] **CLI-02**: `claude-sync export [output.tar.gz]` exports Claude Code environment to archive
+- [x] **CLI-02**: `claude-sync export [output.tar.gz]` exports Claude Code environment to archive
 - [ ] **CLI-03**: `claude-sync import <archive.tar.gz>` restores environment from archive
 - [ ] **CLI-04**: `claude-sync list <archive.tar.gz>` inspects archive contents without extracting
 - [ ] **CLI-05**: Tool shows progress during export and import operations
@@ -85,7 +85,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | CLI-01 | Phase 1 | Complete |
-| CLI-02 | Phase 1 | Pending |
+| CLI-02 | Phase 1 | Complete |
 | EXP-01 | Phase 1 | Complete |
 | EXP-02 | Phase 1 | Complete |
 | EXP-03 | Phase 1 | Complete |
