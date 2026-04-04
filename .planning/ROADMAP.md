@@ -28,7 +28,14 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Archive contains a manifest.json with tool version, export date, and per-file checksums
   4. `~/.claude.json` (OAuth tokens) is never present in the archive, and the CLI prints a message confirming the exclusion
   5. Archive entries use only relative paths — no absolute machine paths embedded in the archive
-**Plans**: TBD
+**Plans:** 4 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Project scaffold, test fixtures, exclusions module, and shared type contracts
+- [ ] 01-02-PLAN.md — Scanner module: discover and checksum exportable files
+- [ ] 01-03-PLAN.md — Packer module: create tar.gz archive with manifest
+- [ ] 01-04-PLAN.md — Export command: wire scanner + packer into CLI with integration tests
+
 **UI hint**: no
 
 ### Phase 2: Import
@@ -63,6 +70,6 @@ Phases execute in numeric order: 1 → 2 → 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Export | 0/? | Not started | - |
+| 1. Export | 0/4 | Planned | - |
 | 2. Import | 0/? | Not started | - |
 | 3. Polish | 0/? | Not started | - |
