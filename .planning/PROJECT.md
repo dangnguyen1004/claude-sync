@@ -56,4 +56,4 @@ One-command backup and restore of a complete Claude Code environment, making it 
 | Node.js as runtime | Claude Code already requires Node; zero extra deps | — Pending |
 
 ---
-*Last updated: 2026-04-04 after project initialization*
+*Last updated: 2026-04-04 after Phase 1 (export) completion*
