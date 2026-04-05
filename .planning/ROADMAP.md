@@ -28,13 +28,13 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Archive contains a manifest.json with tool version, export date, and per-file checksums
   4. `~/.claude.json` (OAuth tokens) is never present in the archive, and the CLI prints a message confirming the exclusion
   5. Archive entries use only relative paths — no absolute machine paths embedded in the archive
-**Plans:** 3/4 plans executed
+**Plans:** 4/4 plans executed
 
 Plans:
 - [x] 01-01-PLAN.md — Project scaffold, test fixtures, exclusions module, and shared type contracts
 - [x] 01-02-PLAN.md — Scanner module: discover and checksum exportable files
 - [x] 01-03-PLAN.md — Packer module: create tar.gz archive with manifest
-- [ ] 01-04-PLAN.md — Export command: wire scanner + packer into CLI with integration tests
+- [x] 01-04-PLAN.md — Export command: wire scanner + packer into CLI with integration tests
 
 **UI hint**: no
 
@@ -49,11 +49,11 @@ Plans:
   4. A timestamped backup of all files that would be overwritten is created in `~/.claude/backups/` before any write occurs
   5. Hook paths in settings.json are rewritten to the target machine's home directory, replacing the source machine prefix recorded in the manifest
   6. User can run `claude-sync list claude.tar.gz` and see the archive manifest contents without extracting any files
-**Plans:** 2 plans
+**Plans:** 2/2 plans executed
 
 Plans:
-- [ ] 02-01-PLAN.md — Manifest source_home extension, unpacker, restorer, and import command core
-- [ ] 02-02-PLAN.md — Backup-before-write system, hook path rewriting, and list subcommand
+- [x] 02-01-PLAN.md — Manifest source_home extension, unpacker, restorer, and import command core
+- [x] 02-02-PLAN.md — Backup-before-write system, hook path rewriting, and list subcommand
 
 **UI hint**: no
 
@@ -65,7 +65,11 @@ Plans:
   1. User can run `claude-sync export --include conversations` to include `~/.claude/projects/` in the archive without the process crashing or exhausting memory on multi-gigabyte directories
   2. Tool displays a progress spinner or indicator during both export and import so silence is never mistaken for a hang
   3. If settings.json hook commands contain patterns matching API keys or bearer tokens, the CLI warns the user before writing the archive and requires `--skip-secret-scan` to proceed
-**Plans**: TBD
+**Plans:** 1 plan
+
+Plans:
+- [ ] 03-01-PLAN.md — Streaming export for large conversations, ora spinners during export/import, and secret scanning for settings.json
+
 **UI hint**: no
 
 ## Progress
@@ -75,6 +79,6 @@ Phases execute in numeric order: 1 → 2 → 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Export | 2/4 | In Progress|  |
-| 2. Import | 0/2 | Not started | - |
-| 3. Polish | 0/? | Not started | - |
+| 1. Export | 4/4 | Complete | 2026-04-05 |
+| 2. Import | 2/2 | Complete | 2026-04-05 |
+| 3. Polish | 0/1 | Not started | - |
