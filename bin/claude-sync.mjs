@@ -15,6 +15,7 @@ program
   .argument('[output]', 'Output file path (default: ./claude-sync-YYYY-MM-DD.tar.gz)')
   .option('--include <types>', 'Comma-separated data types to include (overrides defaults)')
   .option('--exclude <types>', 'Comma-separated data types to exclude from defaults')
+  .option('--skip-secret-scan', 'Skip secret scanning of settings.json before export')
   .action(async (output, options) => {
     try {
       await runExport(output, options);

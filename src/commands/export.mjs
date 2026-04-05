@@ -4,6 +4,7 @@ import os from 'node:os';
 import chalk from 'chalk';
 import { scanExportTargets } from '../scanner.mjs';
 import { buildManifest, createArchive } from '../packer.mjs';
+import { scanForSecrets } from '../secrets.mjs';
 import { DEFAULT_TYPES, OAUTH_FILE, resolveScope } from '../exclusions.mjs';
 
 /**
@@ -88,7 +89,7 @@ const DIRECTORY_TYPES = new Set(['skills', 'rules', 'commands', 'agents', 'conve
  * scans ~/.claude/, builds manifest, creates tar.gz archive, and prints output.
  *
  * @param {string | undefined} outputArg - Optional output path from CLI argument
- * @param {{ include?: string, exclude?: string, claudeDir?: string }} [options]
+ * @param {{ include?: string, exclude?: string, claudeDir?: string, skipSecretScan?: boolean }} [options]
  * @returns {Promise<void>}
  */
 export async function runExport(outputArg, options = {}) {
@@ -175,6 +176,35 @@ export async function runExport(outputArg, options = {}) {
 
   // OAuth exclusion notice — always shown (EXP-11)
   console.log('\n  ' + chalk.yellow('⚠') + '  ~/.claude.json excluded (contains OAuth tokens)');
+
+  // SEC-01: Scan settings.json for secrets before archiving
+  if (
+    !options.skipSecretScan &&
+    activeTypes.includes('hooks') &&
+    byType.hooks &&
+    byType.hooks.length > 0
+  ) {
+    const settingsFile = byType.hooks.find((f) => f.relativePath === 'settings.json');
+    if (settingsFile) {
+      try {
+        const content = await fs.readFile(settingsFile.absPath, 'utf-8');
+        const findings = scanForSecrets(content);
+        if (findings.length > 0) {
+          console.warn(chalk.yellow('\n  Warning: Potential secrets detected in settings.json\n'));
+          for (const { pattern, context } of findings) {
+            console.warn(chalk.yellow('  ! ') + `${pattern}: ...${context}...`);
+          }
+          console.warn(
+            chalk.yellow('  Archive creation aborted. Run with --skip-secret-scan to proceed anyway.\n'),
+          );
+          process.exitCode = 1;
+          return;
+        }
+      } catch {
+        // Could not read settings.json — skip secret scan
+      }
+    }
+  }
 
   // Build manifest and create archive
   const manifest = buildManifest(files, activeTypes);
