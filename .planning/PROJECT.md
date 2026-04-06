@@ -12,19 +12,21 @@ One-command backup and restore of a complete Claude Code environment, making it 
 
 ### Validated
 
-(None yet — ship to validate)
+- [x] Export global skills (`~/.claude/skills/`)
+- [x] Export global rules (`~/.claude/rules/`)
+- [x] Export hooks configuration (`~/.claude/settings.json` hooks section)
+- [x] Export all conversation history (`~/.claude/projects/`)
+- [x] Bundle all exported data into a single archive file
+- [x] Import command: load an exported archive back into Claude Code
+- [x] CLI interface with `export` and `import` subcommands
+- [x] Selective export: allow user to choose which data types to include/exclude
+- [x] Dry-run mode for import (preview what would be changed before applying)
+
+Validated in Phase 01 (export), Phase 02 (import), Phase 03 (polish).
 
 ### Active
 
-- [ ] Export global skills (`~/.claude/skills/`)
-- [ ] Export global rules (`~/.claude/rules/`)
-- [ ] Export hooks configuration (`~/.claude/settings.json` hooks section)
-- [ ] Export all conversation history (`~/.claude/projects/`)
-- [ ] Bundle all exported data into a single archive file
-- [ ] Import command: load an exported archive back into Claude Code
-- [ ] CLI interface with `export` and `import` subcommands
-- [ ] Selective export: allow user to choose which data types to include/exclude
-- [ ] Dry-run mode for import (preview what would be changed before applying)
+(None — all v1 requirements validated)
 
 ### Out of Scope
 
@@ -51,9 +53,9 @@ One-command backup and restore of a complete Claude Code environment, making it 
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| CLI over GUI | Power users; scriptable; simpler to build | — Pending |
-| File archive format | Single file = easy to share, email, store | — Pending |
-| Node.js as runtime | Claude Code already requires Node; zero extra deps | — Pending |
+| CLI over GUI | Power users; scriptable; simpler to build | Shipped: commander.js CLI with export/import subcommands |
+| File archive format | Single file = easy to share, email, store | Shipped: tar.gz format with manifest.json at root |
+| Node.js as runtime | Claude Code already requires Node; zero extra deps | Shipped: ESM modules, Node 18+ required |
 
 ---
-*Last updated: 2026-04-04 after Phase 1 (export) completion*
+*Last updated: 2026-04-06 after Phase 03 (polish) completion — all v1 requirements validated*
