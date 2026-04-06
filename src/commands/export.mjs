@@ -2,8 +2,9 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import os from 'node:os';
 import chalk from 'chalk';
+import ora from 'ora';
 import { scanExportTargets } from '../scanner.mjs';
-import { buildManifest, createArchive } from '../packer.mjs';
+import { buildManifest, createArchiveStreaming } from '../packer.mjs';
 import { scanForSecrets } from '../secrets.mjs';
 import { DEFAULT_TYPES, OAUTH_FILE, resolveScope } from '../exclusions.mjs';
 
@@ -208,7 +209,19 @@ export async function runExport(outputArg, options = {}) {
 
   // Build manifest and create archive
   const manifest = buildManifest(files, activeTypes);
-  await createArchive(files, outputPath, manifest, claudeDir);
+  const archiveSpinner = ora(
+    activeTypes.includes('conversations')
+      ? 'Creating archive (streaming large files)...'
+      : 'Creating archive...',
+  ).start();
+  try {
+    await createArchiveStreaming(files, outputPath, manifest, claudeDir);
+    archiveSpinner.succeed(chalk.green('Archive created'));
+  } catch (err) {
+    archiveSpinner.fail(chalk.red('Archive creation failed: ' + err.message));
+    process.exitCode = 1;
+    return;
+  }
 
   // Print archive summary
   const stat = await fs.stat(outputPath);

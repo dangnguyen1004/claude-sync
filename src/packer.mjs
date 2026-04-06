@@ -5,6 +5,36 @@ import os from 'node:os';
 import { ALWAYS_EXCLUDED_NAMES } from './exclusions.mjs';
 
 /**
+ * Creates a tar.gz archive by streaming files directly from claudeDir —
+ * no staging directory copy needed. This avoids doubling disk I/O for
+ * large conversation directories (EXP-08).
+ *
+ * @param {import('./types.mjs').ScannedFile[]} scannedFiles
+ * @param {string} outputPath - Destination path for the .tar.gz file
+ * @param {import('./types.mjs').Manifest} manifest
+ * @param {string} claudeDir - Source claude directory
+ * @returns {Promise<void>}
+ */
+export async function createArchiveStreaming(scannedFiles, outputPath, manifest, claudeDir) {
+  const manifestPath = path.join(claudeDir, 'manifest.json');
+  await fs.writeFile(manifestPath, JSON.stringify(manifest, null, 2), 'utf-8');
+  try {
+    const relativePaths = scannedFiles.map((f) => f.relativePath);
+    await tar.create(
+      {
+        gzip: true,
+        file: outputPath,
+        cwd: claudeDir,
+        portable: true,
+      },
+      ['manifest.json', ...relativePaths],
+    );
+  } finally {
+    await fs.unlink(manifestPath).catch(() => {});
+  }
+}
+
+/**
  * Builds a manifest object from scanned files.
  *
  * @param {import('./types.mjs').ScannedFile[]} scannedFiles
@@ -17,6 +47,7 @@ export function buildManifest(scannedFiles, includedTypes) {
     tool: 'claude-sync',
     exported_at: new Date().toISOString(),
     source_platform: process.platform,
+    source_home: os.homedir(),
     included_types: includedTypes,
     files: scannedFiles.map((f) => ({
       path: f.relativePath,

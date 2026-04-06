@@ -20,6 +20,7 @@
  * @property {string} tool - Always 'claude-sync'
  * @property {string} exported_at - ISO 8601 timestamp
  * @property {string} source_platform - process.platform value
+ * @property {string} source_home - Source machine home directory (os.homedir()) recorded at export time; used by import to rewrite hook paths
  * @property {string[]} included_types - Data type names included
  * @property {ManifestFile[]} files - Per-file metadata
  * @property {{ oauth_file: string, runtime_dirs: string[] }} excluded - What was excluded
