@@ -1,0 +1,58 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: google-github-actions/release-please-action@v4
+        with:
+          release-type: node
+          package-name: claude-sync
+          default-branch: main
+
+  publish:
+    needs: [release-please]
+    if: needs.release-please.outputs.released == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: 'Regenerate docs'
+        run: npm run docs
+
+      - name: 'Verify docs updated'
+        run: git diff --quiet docs/ || (echo "Docs changed — commit with conventional commit message" && exit 1)
+
+      - run: npm ci
+
+      - run: npm test
+
+      - name: 'Build archive for GitHub Release'
+        run: |
+          node bin/claude-sync.mjs export claude-sync-${{ needs.release-please.outputs.version }}.tar.gz
+
+      - name: 'Publish to npm'
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 'Create GitHub Release'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: claude-sync-${{ needs.release-please.outputs.version }}.tar.gz
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
