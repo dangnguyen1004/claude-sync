@@ -82,3 +82,13 @@ Phases execute in numeric order: 1 → 2 → 3
 | 1. Export | 4/4 | Complete | 2026-04-05 |
 | 2. Import | 2/2 | Complete | 2026-04-05 |
 | 3. Polish | 0/1 | Not started | - |
+
+### Phase 4: CI/CD deploying to npm with auto docs update for public GitHub release
+
+**Goal:** [To be planned]
+**Requirements**: TBD
+**Depends on:** Phase 3
+**Plans:** 1/1 plans complete
+
+Plans:
+- [x] TBD (run /gsd-plan-phase 4 to break down) (completed 2026-04-07)
