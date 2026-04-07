@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 01-export-03-PLAN.md
-last_updated: "2026-04-06T13:07:02.035Z"
+stopped_at: Phase 04 context gathered
+last_updated: "2026-04-07T14:34:26.872Z"
 last_activity: 2026-04-06
 progress:
-  total_phases: 3
+  total_phases: 4
   completed_phases: 3
   total_plans: 7
   completed_plans: 7
-  percent: 0
+  percent: 100
 ---
 
 # Project State
@@ -79,13 +79,12 @@ Recent decisions affecting current work:
 
 None yet.
 
+### Roadmap Evolution
+
+- Phase 4 added: CI/CD deploying to npm with auto docs update for public GitHub release
+
 ### Blockers/Concerns
 
-- Settings.json hooks merge semantics (Phase 2): merge vs overwrite when both source and destination have hooks configured — needs a product decision before implementing restorer
-- JSONL conversation schema is undocumented (v2 concern, not v1): path remapping inside JSONL files deferred to v2
-
-## Session Continuity
-
-Last session: 2026-04-04T08:07:26.669Z
-Stopped at: Completed 01-export-03-PLAN.md
-Resume file: None
+Last session: 2026-04-07T14:34:26.858Z
+Stopped at: Phase 04 context gathered
+Resume file: .planning/phases/04-ci-cd-deploying-to-npm-with-auto-docs-update-for-public-gith/04-CONTEXT.md
