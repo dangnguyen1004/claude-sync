@@ -4,7 +4,7 @@ import os from 'node:os';
 import chalk from 'chalk';
 import ora from 'ora';
 import { scanExportTargets } from '../scanner.mjs';
-import { buildManifest, createArchiveStreaming } from '../packer.mjs';
+import { buildManifest, createArchive } from '../packer.mjs';
 import { scanForSecrets } from '../secrets.mjs';
 import { DEFAULT_TYPES, OAUTH_FILE, resolveScope } from '../exclusions.mjs';
 
@@ -215,7 +215,7 @@ export async function runExport(outputArg, options = {}) {
       : 'Creating archive...',
   ).start();
   try {
-    await createArchiveStreaming(files, outputPath, manifest, claudeDir);
+    await createArchive(files, outputPath, manifest, claudeDir);
     archiveSpinner.succeed(chalk.green('Archive created'));
   } catch (err) {
     archiveSpinner.fail(chalk.red('Archive creation failed: ' + err.message));

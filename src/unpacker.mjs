@@ -10,8 +10,7 @@ import os from 'node:os';
  * @returns {Promise<import('./types.mjs').Manifest>}
  */
 export async function readManifestFromArchive(archivePath) {
-  const extractDir = path.join(os.tmpdir(), 'claude-sync-manifest-' + Date.now());
-  await fs.mkdir(extractDir, { recursive: true });
+  const extractDir = await fs.mkdtemp(path.join(os.tmpdir(), 'claude-sync-manifest-'));
   try {
     await tar.extract({ file: archivePath, cwd: extractDir });
     const manifestPath = path.join(extractDir, 'manifest.json');

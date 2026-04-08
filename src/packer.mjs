@@ -9,6 +9,9 @@ import { ALWAYS_EXCLUDED_NAMES } from './exclusions.mjs';
  * no staging directory copy needed. This avoids doubling disk I/O for
  * large conversation directories (EXP-08).
  *
+ * NOTE: Writes manifest.json temporarily into claudeDir. Not safe to call
+ * concurrently with the same claudeDir. Use createArchive for concurrent scenarios.
+ *
  * @param {import('./types.mjs').ScannedFile[]} scannedFiles
  * @param {string} outputPath - Destination path for the .tar.gz file
  * @param {import('./types.mjs').Manifest} manifest
