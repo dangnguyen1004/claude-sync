@@ -3,25 +3,21 @@
 // Future phases can expand to auto-generate API reference from JSDoc.
 
 import fs from 'node:fs/promises';
-import { glob } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const rootDir = join(__dirname, '..');
+const docsDir = join(rootDir, 'docs');
 
-const docsPattern = join(rootDir, 'docs', '*.md');
-
-glob(docsPattern, (err, files) => {
-  if (err) {
-    console.warn('Warning: Could not glob docs directory.');
-    process.exit(0);
-    return;
-  }
-
+try {
+  const entries = await fs.readdir(docsDir);
+  const files = entries.filter(f => f.endsWith('.md'));
   if (files.length === 0) {
     console.warn('Warning: No docs found. Run manually to update documentation.');
   } else {
     console.log(`Verified ${files.length} docs files present.`);
   }
-});
+} catch {
+  console.warn('Warning: Could not read docs directory.');
+}
