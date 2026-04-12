@@ -3,6 +3,11 @@ name: Release
 on:
   push:
     branches: [main]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to publish (e.g. 1.0.0)'
+        required: true
 
 permissions:
   contents: write
@@ -10,16 +15,25 @@ permissions:
 
 jobs:
   release-please:
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
+    outputs:
+      released: ${{ steps.release.outputs.released }}
+      version: ${{ steps.release.outputs.version }}
     steps:
       - uses: actions/checkout@v4
       - uses: googleapis/release-please-action@v4
+        id: release
         with:
           release-type: node
 
   publish:
     needs: [release-please]
-    if: needs.release-please.outputs.released == 'true'
+    if: |
+      always() && (
+        (needs.release-please.result == 'success' && needs.release-please.outputs.released == 'true') ||
+        github.event_name == 'workflow_dispatch'
+      )
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -28,6 +42,15 @@ jobs:
         with:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org'
+
+      - name: 'Resolve version'
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "value=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+          else
+            echo "value=${{ needs.release-please.outputs.version }}" >> $GITHUB_OUTPUT
+          fi
 
       - name: 'Regenerate docs'
         run: npm run docs
@@ -41,7 +64,7 @@ jobs:
 
       - name: 'Build archive for GitHub Release'
         run: |
-          node bin/claude-sync.mjs export claude-sync-${{ needs.release-please.outputs.version }}.tar.gz
+          node bin/claude-sync.mjs export claude-sync-${{ steps.version.outputs.value }}.tar.gz
 
       - name: 'Publish to npm'
         run: npm publish --access public
@@ -51,7 +74,8 @@ jobs:
       - name: 'Create GitHub Release'
         uses: softprops/action-gh-release@v2
         with:
-          files: claude-sync-${{ needs.release-please.outputs.version }}.tar.gz
+          tag_name: v${{ steps.version.outputs.value }}
+          files: claude-sync-${{ steps.version.outputs.value }}.tar.gz
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
